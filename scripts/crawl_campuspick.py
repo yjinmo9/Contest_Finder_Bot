@@ -34,7 +34,7 @@ def crawl_linkareer(keywords, max_results=10):
         time.sleep(2)
 
         try:
-            WebDriverWait(driver, 10).until(
+            WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "ActivityListCardItem__StyledWrapper-sc-2386b9fe-0"))
             )
         except:

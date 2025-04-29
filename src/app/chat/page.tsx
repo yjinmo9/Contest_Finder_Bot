@@ -110,13 +110,13 @@ export default function ChatBot() {
   return (
     <div className="max-w-sm mx-auto h-[90vh] flex flex-col border rounded-xl shadow-md overflow-hidden">
       
-      {/* ✅ 항상 고정되는 상단 헤더 */}
+      {/* ✅ 상단 고정 헤더 */}
       <div className="bg-blue-600 text-white px-4 py-3 text-lg font-bold flex items-center">
         John <span className="ml-2 text-sm font-normal">consultant</span>
       </div>
   
-      {/* ✅ 채팅 영역 (50%) */}
-      <div className="flex-1 overflow-y-auto bg-[#f4f4f4] p-3 space-y-2">
+      {/* ✅ 채팅 영역 (위쪽 50%) */}
+      <div className="flex-1 bg-[#f4f4f4] p-3 space-y-2 overflow-y-auto">
         {messages.map((m, idx) => (
           <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
@@ -132,9 +132,9 @@ export default function ChatBot() {
         ))}
       </div>
   
-      {/* ✅ 추천 공모전 영역 (50%) */}
+      {/* ✅ 추천 결과 (아래쪽 50%) */}
       {recommendations.length > 0 && (
-        <div className="h-[50%] bg-white border-t px-4 py-3 flex flex-col overflow-y-auto">
+        <div className="basis-1/2 bg-white border-t px-4 py-3 flex flex-col overflow-y-auto">
           <h2 className="text-sm font-semibold mb-2">📌 추천 공모전</h2>
           <ul className="space-y-2 text-sm flex-1 overflow-y-auto">
             {recommendations.map((item, idx) => (
@@ -167,16 +167,16 @@ export default function ChatBot() {
               setRecommendations([]);
               setAnswers({ major: '', interest: '', project: '' });
             }}
-            className="mt-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded"
+            className="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded"
           >
             🔁 다시 찾아보기
           </button>
         </div>
       )}
   
-      {/* ✅ 입력창 (추천 완료되면 숨김) */}
+      {/* ✅ 입력창 (추천 끝나면 숨김) */}
       {step < 3 && (
-        <div className="flex items-center gap-2 p-2 border-t">
+        <div className="flex items-center gap-2 p-2 border-t bg-white">
           <input
             className="flex-1 p-2 border rounded-full text-sm focus:outline-none"
             placeholder="입력하세요..."
@@ -193,6 +193,6 @@ export default function ChatBot() {
         </div>
       )}
     </div>
-  );
+  );  
   
 }
